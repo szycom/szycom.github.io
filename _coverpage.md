@@ -1,4 +1,4 @@
-<div class="cover-main"><img width="180px" src="icon/author.JPG">
+<div class="cover-main"><img width="180px" src="/icon/author.JPG">
 
 <h1 id="practiceMakePerfect">
 <a><span>勤能补拙 - 攻城狮修炼之路</span></a></h1>
