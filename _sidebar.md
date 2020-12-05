@@ -20,8 +20,13 @@
 
     * ssh
         
-        * [vim TAB缩进](/docs/ssh/login.md)
+        * [登录](/docs/ssh/login.md)
 		
-	* blog
+    * blog
         
-        * [vim TAB缩进](/docs/blog/hexo-cmd.md)
+        * [hexo常用命令](/docs/blog/hexo-cmd.md)
+	
+    * git
+        
+	* [常用网站](/docs/git/website.md)
+	
