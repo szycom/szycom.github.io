@@ -24,39 +24,28 @@
 <body>
 <div id="app"></div>
 
-<style type="text/css">
-
-    .sidebar p.active{
-        border-right: 2px solid;
-        color: var(--theme-color,#42b983);
-        font-weight: 600;
-    }
-
-</style>
+<!-- JavaScript -->
 <script>
     window.$docsify = {
         name: '勤能补拙 - 攻城狮修炼之路',
         repo: 'https://github.com/szycom.github.io',
-          loadSidebar: true,
-        subMaxLevel: 2,
-        autoHeader: true,
+        loadSidebar: true,
+        coverpage: true,
+        // NAVIGATION
+        // -----------------------------------------------------------------
+        auto2top   : true,
+        maxLevel   : 3,
+        subMaxLevel: 3,
+        
+        // PLUGINS
+        // -----------------------------------------------------------------
+        executeScript: true,
+        ga    : 'UA-100100910-3',
         search: {
-            paths: 'auto',
-            placeholder: '🔍 搜索 ',
-            noData: '哎呀，没有找到呀！ ',
-            // Headline depth, 1 - 6
-            depth: 2
-        },
-        copyCode: {
-            buttonText : '复制',
-            errorText  : 'Error',
-            successText: 'OK!'
-        },
-        pagination: {
-            previousText: '上一章',
-            nextText: '下一章',
-        },
-        coverpage: true
+            depth      : 3,
+            noData     : 'No results!',
+            placeholder: 'Search...'
+        }
     }
 </script>
 <script src="assets/js/main.js"></script>
