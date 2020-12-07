@@ -1,18 +1,7 @@
----
-title: shell通配符与正则表达式
-date: 2020-01-06 23:03:33
-tags: shell
-categories: linux
----
 # 通配符（Wildcard）
 bash本身没有提供正则表达式，在脚本中使用表达式的是一些命令和软件包，比如sed/awk等。
 shell脚本中表达式使用的是通配符。Shell 中可以使用的通配符如下：
-<!--more-->
-<style>
-table th:first-of-type {
-	width: 100px;
-}
-</style>
+
 通配符|含义|实例|
 --|:--|:--
 *|匹配 0 或多个字符|	a*b，a与b之间可以有任意长度的任意字符, 也可以一个也没有, 如 aabcb, axyzb, a012b, ab
@@ -22,7 +11,7 @@ table th:first-of-type {
 [c1-c2]|	匹配 c1-c2 中的任意单一字符|	a[0-9]b，匹配0与9之间其中一个字符，如 a0b, a1b... a9b
 {s1,s2,...}|	匹配 s1 或 s2 (或更多)中的一个字符串|	a{abc,xyz,123}b，a与b之间只能是abc或xyz或123这三个字符串之一
 
-# 示例
+**示例**
 ```
 # shell脚本中检查输入的参数是否是一个数值
 case "$1" in

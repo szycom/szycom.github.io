@@ -1,13 +1,5 @@
----
-title: hex常用命令
-date: 2020-05-31 15:01:19
-tags: [hexo]
-categories: [博客搭建]
----
 # hexo命令
 使用hexo中使用到命令
-<!--more-->
-
 ```
 # 从代码库拉取工作目录
 git pull origin hexo

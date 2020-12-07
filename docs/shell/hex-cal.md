@@ -1,15 +1,11 @@
----
-title: 一种16进制计算方法
-date: 2020-07-17 00:22:46
-tags: shell
-categories: linux
----
-# 以查看/proc/2206/maps下的so大小为例进行说明，计算方法如下
+**一种16进制计算方法**
+
+以查看/proc/2206/maps下的so大小为例进行说明，计算方法如下
 ```
 cat /proc/2206/maps | awk '{print $1}' | awk -F '-' '{printf "echo \"obase=16\;\$\(\(0x%s-0x%s\)\)\"|bc\n", $2, $1}'
 ```
-命令拆分
-<!--more-->
+
+**命令拆分**
 
 ```
 # 使用awk获取操作元素

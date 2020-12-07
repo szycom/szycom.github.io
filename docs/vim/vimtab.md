@@ -1,11 +1,5 @@
----
-title: vim TAB缩进设置
-date: 2020-01-10 22:07:36
-tags: vim
-categories: linux
----
-## vimTAB键的宽度设置
-<!--more-->
+# vimTAB键的宽度设置
+
 在/etc/vimrc中添加如下代码
 ```
 " ts是tabstop的缩写，设TAB宽4个空格
