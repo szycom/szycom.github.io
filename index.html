@@ -24,6 +24,9 @@
 <body>
 <div id="app"></div>
 
+<!-- docsify-edit-on-github -->
+<script src="//unpkg.com/docsify-edit-on-github/index.js"></script>
+ 
 <!-- JavaScript -->
 <script>
     window.$docsify = {
@@ -55,7 +58,9 @@
             previousText: '上一章',
             nextText: '下一章',
         },
-
+        plugins: [
+            EditOnGithubPlugin.create('https://github.com/Snailclimb/JavaGuide-Interview/blob/master/')
+        ],
     }
 </script>
 <script src="assets/js/main.js"></script>
