@@ -1,6 +1,7 @@
 # 常用命令如下表
 
 **关于文件类型的判断**
+
 测试标志|代表意义|示例
 --|:--|:--
 -e	|判断文件是否存在|判断文件是否存在</p>test -e filename
@@ -8,6 +9,7 @@
 -d	|该文件是否存在且为目录(directory)|判断是否为目录</p>test -f filename && filetype="directory"
 
 **关于数值的判断**
+
 测试标志|代表意义|示例
 --|:--|:--
 -eq| 两数值相等 (equal)|test n1 -eq n2
@@ -18,6 +20,7 @@
 -le| n1 小于等于 n2 (less than or equal)|test n1 -le n2
 
 **关于字符串的判断**
+
 测试标志|代表意义|示例
 --|:--|:--
 -z |判断字符串是否为空|test -z string 若 string 为空字串，则为 true
@@ -26,6 +29,7 @@
 != |判断字符串是否不等|test str1 != str2 若相等，则返回 false
 
 **[ ... ] 判断符号**
+
 除了利用test命令进行测试，还可以利用中括号[...]来进行判断。
 如下两个操作具有相同的效果
 ```
@@ -37,6 +41,7 @@
 ```
 
 **使用中括号[...]时需要注意：**
+
 - 在中括号內的每个元件都需要有空白键来分隔；
 - 在中括号內的变量，最好都以双引号括起来；
 - 在中括号內的常量，最好都以单或双引号括起来。
@@ -118,6 +123,7 @@ fi      # [[ $hexadecimal ]] also evaluates!
 ```
 
 参考文献：
+
 http://linux.vbird.org/linux_basic/0340bashshell-scripts.php
 https://tldp.org/LDP/abs/html/testconstructs.html
 https://google.github.io/styleguide/shellguide.html#test----and---
