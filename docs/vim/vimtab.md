@@ -1,4 +1,4 @@
-# vimTAB键的宽度设置
+**vimTAB键的宽度设置**
 
 在/etc/vimrc中添加如下代码
 ```
