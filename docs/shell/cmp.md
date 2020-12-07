@@ -5,6 +5,8 @@
 table th:first-of-type {
 	width: 100px;
 }
+</style>
+
 **关于文件类型的判断**
 
 测试标志|代表意义|示例
@@ -127,7 +129,7 @@ else
 fi      # [[ $hexadecimal ]] also evaluates!
 ```
 
-参考文献：
+# 参考文献：
 
 http://linux.vbird.org/linux_basic/0340bashshell-scripts.php
 https://tldp.org/LDP/abs/html/testconstructs.html
