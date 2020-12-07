@@ -26,11 +26,6 @@
 
 <!-- JavaScript -->
 <script>
-    // 离线支持
-    //if (typeof navigator.serviceWorker !== 'undefined') {
-    //  navigator.serviceWorker.register('sw.js')
-    //}
-
     window.$docsify = {
         name: '勤能补拙 - 攻城狮修炼之路',
         repo: 'https://github.com/szycom/szycom.github.io',
@@ -61,7 +56,7 @@
             nextText: '下一章',
         },
 	plugins: [
-            EditOnGithubPlugin.create('https://github.com/szycom/szycom.github.io/blob/main/')
+            EditOnGithubPlugin.create('https://github.com/szycom/szycom.github.io/main/')
         ],
     }
 </script>
