@@ -1,6 +1,6 @@
 
 
-* 工具
+* **工具**
 
   * Shell
   
@@ -37,4 +37,8 @@
   * git
         
     * [有用网站](/docs/git/website.md)
-	
+ 
+ * **Redis**
+ 
+   * [有用网站](/docs/redis/website.md)
+    	
