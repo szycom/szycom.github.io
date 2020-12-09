@@ -4,6 +4,7 @@ table th:first-of-type {
 	width: 100px;
 }
 </style>
+
 **关于文件类型的判断**
 
 测试标志|代表意义|示例
