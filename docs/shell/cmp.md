@@ -1,10 +1,9 @@
-比较运算
-
-# 常用命令如下表
+## 常用命令
 <style>
 table th:first-of-type {
 	width: 100px;
 }
+</style>
 **关于文件类型的判断**
 
 测试标志|代表意义|示例
@@ -37,7 +36,7 @@ table th:first-of-type {
 
 除了利用test命令进行测试，还可以利用中括号[...]来进行判断。
 如下两个操作具有相同的效果
-```
+```bash
  # 判断HOME变量是否为空字符串
  test -z "${HOME}" #方式一
 
@@ -51,20 +50,20 @@ table th:first-of-type {
 - 在中括号內的变量，最好都以双引号括起来；
 - 在中括号內的常量，最好都以单或双引号括起来。
 
-```
+```bash
 [ "$HOME" == "$MAIL" ]
 [□"$HOME"□==□"$MAIL"□]
  ↑       ↑  ↑       ↑
 ```
 
-# test, [ … ], and [[ … ]]
+## test, [ … ], and [[ … ]]
 
-test是shell的一条内建命令，[ … ]和test等效。
-[[ … ]]是Bash在2.02版本中引入的增强型测试命令，'[['是一个关键字，不是shell命令
-相比于test命令，[[ … ]]可以使用正则匹配，可以避免[ … ]产生的文件扩展和单词分离问题（
-pathname expansion or word splitting）
+> test是shell的一条内建命令，[ … ]和test等效。
+> [[ … ]]是Bash在2.02版本中引入的增强型测试命令，'[['是一个关键字，不是shell命令
+> 相比于test命令，[[ … ]]可以使用正则匹配，可以避免[ … ]产生的文件扩展和单词分离问题（
+> pathname expansion or word splitting）
 
-```
+```bash
 # test, [ … ], and [[ … ]]类型测试
 bash$ type test
 test is a shell builtin
@@ -77,7 +76,8 @@ bash$ type ']]'
 bash$ type ']'
 bash: type: ]: not found
 ```
-```
+
+```bash
 # [ … ]带来的文件扩展和单词分离问题
 # 在当前目录下创建两个文件，分别为f.txt,f1.txt，将下面命令copy到shell脚本中执行
 #!/bin/bash
@@ -94,7 +94,7 @@ fi
 
 ```
 
-```
+```bash
 # [[...]]可以进行正确计算
 
 # [[ Octal and hexadecimal evaluation ]]
@@ -127,8 +127,7 @@ else
 fi      # [[ $hexadecimal ]] also evaluates!
 ```
 
-参考文献：
-
+## 参考文献
 http://linux.vbird.org/linux_basic/0340bashshell-scripts.php
 https://tldp.org/LDP/abs/html/testconstructs.html
 https://google.github.io/styleguide/shellguide.html#test----and---

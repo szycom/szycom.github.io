@@ -1,8 +1,8 @@
-ssh是一种安全网络传输协议，ssh客户端会自动加密要传输的数据，收到消息后ssh服务端自动对数据进行解密。
+> ssh是一种安全网络传输协议，ssh客户端会自动加密要传输的数据，收到消息后ssh服务端自动对数据进行解密。
 
-# ssh基本用法
-SSH主要用于远程登录。
-```
+## ssh远程登录
+
+```bash
   # 以用户名user，登录远程server
   $ ssh user@server
   # 如果本地用户名与远程用户名一致，登录时可以省略用户名。
@@ -12,14 +12,15 @@ SSH主要用于远程登录。
   $ ssh -p 2222 user@server
 ```
 
-# ssh登陆方式
-可以通过密码登陆到远程server，也可以通过公钥登陆到远程server。
-使用密码登录，每次都必须输入密码，非常麻烦。SSH还提供了公钥登录，可以省去输入密码的步骤。
-所谓"公钥登录"，就是用户将自己的公钥储存在远程server上。
+## ssh免密登陆方式
 
-# 生成密钥操作
+> 可以通过密码登陆到远程server，也可以通过公钥登陆到远程server。
+> 使用密码登录，每次都必须输入密码，非常麻烦。SSH还提供了公钥登录，可以省去输入密码的步骤。
+> 所谓"公钥登录"，就是用户将自己的公钥储存在远程server上。
 
-```
+**生成密钥操作**
+
+```bash
 $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 $ chmod 0600 ~/.ssh/authorized_keys
@@ -41,14 +42,14 @@ known_hosts：保存已认证的远程server公钥
 每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，
 通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程server的公钥。
 ```
+
 **将公钥传送到远程server上面：**
 
-```
+```bash
 $ ssh-copy-id user@server
 ```
 
-# 参考链接：
-
+# 参考文献
 http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html
 https://www.jianshu.com/p/33461b619d53
 https://docstore.mik.ua/orelly/networking_2ndEd/ssh/ch02_04.htm#ch02-92834.html

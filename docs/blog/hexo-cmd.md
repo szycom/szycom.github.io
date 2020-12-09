@@ -1,6 +1,6 @@
-# hexo命令
-使用hexo中使用到命令
-```
+> hexo常用命令
+
+```bash
 # 从代码库拉取工作目录
 git pull origin hexo
 # 创建新的文章

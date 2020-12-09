@@ -1,8 +1,6 @@
-shell变量
+## 基本用法
 
-# 基本用法
-
-```
+```bash
 #!/bin/bash
 # Program:
 #   shows variable assignment and substitution
@@ -27,7 +25,9 @@ echo ${hello} # A B C D
 echo $hello    # A B C D   , 只有一个空白字符
 echo "$hello"  # A B C    D, 保留了原有空白字符
 ```
-# export作用
+
+## export作用
+
 export目的是为了将本地变量传递给子进程
 export的变量传递方向是：父进程----->子进程
 
@@ -36,7 +36,7 @@ $0就是脚本文件的名字
 $1 是第一个参数
 $2 为第2 个...
 
-```
+```bash
 获取最后一个参数
 args=$#            # Number of args passed.
 lastarg=${!args}
@@ -47,6 +47,5 @@ lastarg=${!args}
 # Note that lastarg=${!$#} doesn't work.
 ```
 
-# 参考文献：
-
+## 参考文献
 http://tldp.org/LDP/abs/html/othertypesv.html
