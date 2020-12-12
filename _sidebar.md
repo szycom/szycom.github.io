@@ -41,6 +41,8 @@
 * **JAVA**
   
   * [有用的网站](/docs/java/website.md)
+  
+  * [环境设置](/docs/java/setenv.md)
  
 * **Redis**
  
