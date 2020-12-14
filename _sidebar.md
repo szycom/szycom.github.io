@@ -43,6 +43,7 @@
   * [有用的网站](/docs/java/website.md)
   
   * [环境设置](/docs/java/setenv.md)
+  * [HelloWorld程序](/docs/java/helloworld.md)
  
 * **Redis**
  

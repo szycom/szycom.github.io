@@ -105,6 +105,22 @@ echo "PATH=\$PATH:\$JAVA_HOME/bin:" >> /etc/profile
 echo "export JAVA_HOME CLASS_PATH PATH" >> /etc/profile
 ```
 
+## 使用离线文档
+
+**下面以jdk-11.0.9_doc-all.zip为例进行说明**
+
+* [下载java离线文档](https://www.oracle.com/java/technologies/javase-jdk11-doc-downloads.html)
+
+  ![javadoc](/pics/javadoc.PNG)
+  
+* 将文档解压，为了方便将解压文件夹重命名为**javadocs**
+
+  ![unzipjavadoc](/pics/unzipjavadoc.PNG)
+  
+* 使用浏览器打开文件夹中的**index.html**，就可以离线使用文档了
+
+  ![openjavadoc](/pics/openjavadoc.PNG)
+
 ## 参考问献
 
 https://www.liaoxuefeng.com/wiki/1252599548343744/1260466914339296
