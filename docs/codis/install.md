@@ -83,6 +83,26 @@ mkdir /etc/codis/codis-basic
 ```
 
 ## 设置设备启动后自动执行shell脚本
+
+### 开机启动顺序
+
+* 加载内核
+
+启动 init(/etc/inittab)
+内核启动的第一个用户级别的进程，其 pid 始终为 1，其它的开机启动脚本都是通过是通过这个进程来启动的。
+
+* 执行 /etc/rc.d/rc.sysinit
+
+这是 init 执行的第一个脚本，这个脚本主要工作是进行系统的初始化，如：设置系统字体、启动 swapping、设置主机名、装载声卡模块等。
+
+* 执行 /etc/rc.d/rc*.d（rc0.d、rc1.d、rc2.d…rc6.d）
+这一步会运行各个运行级别的脚本。这些运行脚本是指通过 chkconfig 命令配置的开机启动各个级别所要要执行的程序。
+
+* 执行 /etc/rc.d/rc.local（就是 /etc/rc.local）
+在各级别服务启动后，会执行该文件，如果不需要把所要执行的脚本配置为系统服务，也可以把所需执行的命令写到这个文件中，相比来说更为简单方便。
+
+* /sbin/mingetty，等待用户登录
+
 ### 方法一 chkconfig设置启动脚本
 
 已启动脚本为codis-install.sh为例进行说明
@@ -130,3 +150,20 @@ chmod +x /etc/init.d/codis-install.sh
 ```vim
 sh /etc/init.d/codis-install.sh
 ```
+
+### 方法三 使用定时任务crontab
+
+```shell
+# 添加定时任务
+crontab -e
+
+# 在打开的文件中输入定时脚本
+@reboot /etc/init.d/codis-install.sh
+```
+
+## 参考资料
+
+[开机启动顺序](https://www.jianshu.com/p/e1442913eb0e)
+
+[crontab设置开机启动脚本](https://www.jianshu.com/p/ff2f0a2b481c)
+
