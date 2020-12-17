@@ -16,6 +16,8 @@
 
     * [十六进制计算](/docs/shell/hex-cal.md)
     
+    * [开机启动脚本](/docs/shell/autostart.md)
+    
   * vim
 	
     * [有用网站](/docs/vim/website.md)
