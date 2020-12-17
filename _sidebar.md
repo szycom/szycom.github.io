@@ -37,12 +37,19 @@
   * git
 
     * [有用网站](/docs/git/website.md)
+
+  * markdown
+  
+    * [有用网站](/docs/markdown/website.md)
+	
+	* [使用过的语法](/docs/markdown/usedsyntax.md)
 	
 * **JAVA**
   
   * [有用的网站](/docs/java/website.md)
   
   * [环境设置](/docs/java/setenv.md)
+  
   * [HelloWorld程序](/docs/java/helloworld.md)
  
 * **Redis**
@@ -54,3 +61,8 @@
    * [有用网站](/docs/codis/website.md)
    
    * [centos安装codis](/docs/codis/install.md)
+   
+* **ToList**
+
+   * [待执行计划](/docs/todolist/todolist.md)
+   

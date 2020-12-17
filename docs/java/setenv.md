@@ -121,6 +121,6 @@ echo "export JAVA_HOME CLASS_PATH PATH" >> /etc/profile
 
   ![openjavadoc](/pics/openjavadoc.PNG)
 
-## 参考问献
+## 参考资料
 
 https://www.liaoxuefeng.com/wiki/1252599548343744/1260466914339296
