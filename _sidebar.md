@@ -53,6 +53,8 @@
   * [环境设置](/docs/java/setenv.md)
   
   * [HelloWorld程序](/docs/java/helloworld.md)
+  
+  * [基本数据类型](/docs/java/datatype.md)
  
 * **Redis**
  
