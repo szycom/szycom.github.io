@@ -39,6 +39,8 @@
   * git
 
     * [有用网站](/docs/git/website.md)
+    
+    * [hosts](/docs/git/sundry.md)
 
   * markdown
   
