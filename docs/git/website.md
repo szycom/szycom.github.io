@@ -5,3 +5,5 @@
 [git命令行](https://git-scm.com)
 
 [安装git](https://zhuanlan.zhihu.com/p/123195804)
+
+[svn使用手册](http://svnbook.red-bean.com/en/1.7/svn-book.pdf)
