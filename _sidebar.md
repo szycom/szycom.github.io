@@ -39,6 +39,8 @@
   * git
 
     * [有用网站](/docs/git/website.md)
+    
+    * [hosts](/docs/git/sundry.md)
 
   * markdown
   
@@ -63,6 +65,8 @@
    * [有用网站](/docs/redis/website.md)
    
    * [键过期事件](/docs/redis/expire.md)
+
+   * [PUB/SUB](/docs/redis/pubsub.md)
     	
 * **Codis**
  
