@@ -63,6 +63,8 @@
 * **Redis**
  
    * [有用网站](/docs/redis/website.md)
+
+   * [PUB/SUB](/docs/redis/pubsub.md)
     	
 * **Codis**
  
