@@ -152,6 +152,29 @@ First Header | Second Header
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
 
+## 换行
+
+Markdown语法直接打一个回车是不会显示换行的。
+
+* 行尾打两个或两个以上的空格之后回车
+
+行尾打两个空格换行测试1  
+行尾打两个空格换行测试2  
+行尾打两个空格换行测试3  
+
+* 打两个回车
+
+行尾打两个回车换行测试1
+
+
+行尾打两个回车换行测试2
+
+
+行尾打两个回车换行测试3
+
+
+> 他们的区别是第一种打出来的效果行间距近，而第二种更像是段落之间的分隔，行间距大。
+
 [1]:http://szycom.github.io "早报"
 [2]:http://szycom.github.io "晚报"
 [3]:http://szycom.github.io
