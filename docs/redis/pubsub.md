@@ -6,7 +6,7 @@
 ## Redis连接订阅模式
 
 客户端与Redis server建立连接，发送[SUBSCRIBE][2]命令后，建立的连接就进入了订阅状态。  
-**注意**
+**注意**  
 进入订阅状态后该连接就只能发送[SUBSCRIBE][2] [PSUBSCRIBE][3] [UNSUBSCRIBE][4] [PUNSUBSCRIBE][5] [PING][6] [QUIT][7]这些命令。
 
 [1]:https://redis.io/topics/pubsub
