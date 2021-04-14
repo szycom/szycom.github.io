@@ -73,6 +73,12 @@
    * [有用网站](/docs/codis/website.md)
    
    * [centos安装codis](/docs/codis/install.md)
+
+* **GNU Make**
+
+   * [有用网站](/docs/make/website.md)
+   
+   * [make初识](/docs/make/profile.md)
    
 * **ToList**
 
