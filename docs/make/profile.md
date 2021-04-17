@@ -7,7 +7,7 @@
 
 **一个简单的C语言编译示例**
 
-![cexample1](/pics/cexample1.jpg)
+                                                     ![cexample1](/pics/cexample1.jpg)
 
 *  示例中描述了如何根据hello.c生成目标文件hello，我们只需要编写如下makefile
 ```make
@@ -20,7 +20,9 @@ hello.o: hello.c
 hello.c:
     echo "int main() { return 0; }" > hello.c # Runs first
 ```
+
 * 然后执行make hello就可以编译生成目标文件hello
+
 ```make
 make hello
 ```
