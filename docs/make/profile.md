@@ -12,7 +12,6 @@
 *  示例中描述了如何根据hello.c生成目标文件hello，我们只需要编写如下makefile
 
 ```html
-
 hello: hello.o
     cc hello.o -o hello                       # Runs third
 
@@ -20,25 +19,21 @@ hello.o: hello.c
     cc -c hello.c -o hello.o                  # Runs second
 
 hello.c:
-    echo "int main() { return 0; }" > hello.c # Runs first
-    
+    echo "int main() { return 0; }" > hello.c # Runs first 
 ```
 
 * 然后执行make hello就可以编译生成目标文件hello
-
 ```html
-
 make hello
-
 ```
 
 执行`make hello`大体执行流程如下：
 
-* `make hello`中指定目标`hello`作为目标文件，make搜索makefile中查找`hello`的生成规则，发现`hello`依赖`hello.o`
+* `make hello`中指定目标`hello`作为目标文件，make在makefile中搜索`hello`的生成规则，发现`hello`依赖`hello.o`
 * make递归搜索`hello.o`的生成规则，发现`hello.o`依赖`hello.c`
-* make递归搜索`hello.c`的生成规则，发现`hello.c`没有依赖，直接执行规则下指定的`echo`命令生成`hello.c`，搜索结束返回
-* `hello.o`只依赖`hello.c`，搜索结束，执行`cc -c`命令生成`hello.o`，返回
-* `hello`只依赖`hello.o`，搜索结束，执行`cc`命令生成`hello`，处理结束
+* make递归搜索`hello.c`的生成规则，发现`hello.c`没有依赖，如果`hello.c`存在，直接返回；否则，执行规则下指定的`echo`命令生成`hello.c`
+* `hello.o`只依赖`hello.c`，搜索结束，如果`hello.c`没有更新，直接返回；否则，执行`cc -c`命令生成`hello.o`
+* `hello`只依赖`hello.o`，搜索结束，如果`hello.o`没有更新，直接返回；否则，执行`cc`命令生成`hello`，处理结束
 
 ## 规则
 
