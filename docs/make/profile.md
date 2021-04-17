@@ -11,6 +11,7 @@
 
 *  示例中描述了如何根据hello.c生成目标文件hello，我们只需要编写如下makefile
 ```make
+
 hello: hello.o
     cc hello.o -o hello                       # Runs third
 
@@ -19,12 +20,15 @@ hello.o: hello.c
 
 hello.c:
     echo "int main() { return 0; }" > hello.c # Runs first
+    
 ```
 
 * 然后执行make hello就可以编译生成目标文件hello
 
 ```make
+
 make hello
+
 ```
 
 执行`make hello`大体执行流程如下：
