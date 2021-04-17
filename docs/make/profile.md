@@ -7,7 +7,7 @@
 
 **一个简单的C语言编译示例**
 
-![cexample1](/pics/cexample1.jpg)
+![cexample1](/pics/cexample.jpg)
 
 *  示例中描述了如何根据hello.c生成目标文件hello，我们只需要编写如下makefile
 
@@ -33,8 +33,6 @@ make hello
 ```
 
 执行`make hello`大体执行流程如下：
-
-![cexample1](/pics/cexample.jpg)
 
 * `make hello`中指定目标`hello`作为目标文件，make搜索makefile中查找`hello`的生成规则，发现`hello`依赖`hello.o`
 * make递归搜索`hello.o`的生成规则，发现`hello.o`依赖`hello.c`
