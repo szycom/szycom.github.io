@@ -41,27 +41,20 @@ edit : main.o kbd.o command.o display.o \    # 如果一行文本太长，我们
 		insert.o search.o files.o utils.o
 main.o : main.c defs.h
 	cc -c main.c
-
 kbd.o : kbd.o defs.h command.h
 	cc -c kbd.c
-
 command.o : command.c defs.h command.h
 	cc -c command.c 
-
 display.o : display.c defs.h buffer.h 
 	cc -c display.c 
-
 insert.o : insert.c defs.h buffer.h 
 	cc -c insert.c 
-
 search.o : search.c defs.h buffer.h 
 	cc -c search.c 
 files.o : files.c defs.h buffer.h command.h 
 	cc -c files.c 
-
 utils : utils.c defs.h 
 	cc -c utils.c 
-
 clean : 
 	rm edit main.o kbd.o command.o display.o insert.o search.o \
 	files.o utils.o 
@@ -82,14 +75,6 @@ make clean
 其中**main.o**依赖源文件**main.c**和头文件**def.h**。如果头文件**def.h**发生了变化，**main.c**会被重新编译生成新的**main.o**，**main.o**发生变化导致
 重新链接生成新的**edit**。
 
-这个示例中**clean**是一个比较特殊的target：  
-* 不是一个实际存在的文件；
-* 没有依赖文件prerequisites；
-* 不是其他target的依赖文件。 
-
-**clean**只是一个动作标识，表示要执行哪些命令。 **clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
-我们需要像这样`make clean`明确告知make执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有介绍。
-
 ## 读取处理makefile
 
 上面讨论了一个简单的**makefile**文件，在*makefile*文件所在目录下执行命令：
@@ -104,4 +89,82 @@ make
 * **make**执行所有依赖的`.o`文件对应的Rule。`.o`文件对应的Rule描述了如何根据`.c`文件和`.h`文件重新编译`.o`文件;
 * 如果`.o`文件依赖的`.c`文件或`.h`文件发生了变化，**make**自动执行`.o`目标文件下Recipe指定的命令重新编译生成新的`.o`文件；
 * 若果**edit**依赖的任一`.o`文件发生了变化，**make**自动执行**edit**下Recipe中的命令重新链接生成新的**edit**文件。
+
+## makefile中使用变量
+
+```html
+edit : main.o kbd.o command.o display.o \    # 如果一行文本太长，我们可以使用反斜杠`\`将比较长的行分成多行。
+		insert.o search.o files.o utils.o
+	cc -o edit main.o kbd.o command.o display.o \
+		insert.o search.o files.o utils.o
+```
+**edit**的Rule规则中两次列出了所有的`.o`文件，如果需要新增或减少Object文件需要修改两处makefile文件。实际上可以定义一个变量**objects**，将`.o`列表赋值给变量，
+然后在出现Object列表的地方使用$(object)变量替换，简化后的makefile如下：
+```html
+objects = edit main.o kbd.o command.o display.o \
+		insert.o search.o files.o utils.o
+edit : $(objects)
+	cc -o edit $(objects)
+main.o : main.c defs.h
+	cc -c main.c
+kbd.o : kbd.o defs.h command.h
+	cc -c kbd.c
+command.o : command.c defs.h command.h
+	cc -c command.c 
+display.o : display.c defs.h buffer.h 
+	cc -c display.c 
+insert.o : insert.c defs.h buffer.h 
+	cc -c insert.c 
+search.o : search.c defs.h buffer.h 
+	cc -c search.c 
+files.o : files.c defs.h buffer.h command.h 
+	cc -c files.c 
+utils : utils.c defs.h 
+	cc -c utils.c 
+clean : 
+	rm edit $(objects)
+```
+
+# makefile中隐式规则
+
+为了简化makefile文件，**make**中自带了很多规则Rule，称之为**隐式规则**。
+对于C语言程序，**make**会识别*n*.`c`文件，将*n*.`c`文件作为*n*.`o`文件的依赖文件，使用`cc -c`命令，编译出*n*.`o`文件。
+所以上述*makefile*文件可以继续简化，简化后的makefile如下：
+```html
+objects = edit main.o kbd.o command.o display.o \
+		insert.o search.o files.o utils.o
+edit : $(objects)
+	cc -o edit $(objects)
+main.o : defs.h
+kbd.o : defs.h command.h
+command.o : defs.h command.h
+display.o : defs.h buffer.h 
+insert.o : defs.h buffer.h 
+search.o : defs.h buffer.h 
+files.o : defs.h buffer.h command.h 
+utils : defs.h 
+clean : 
+	rm edit $(objects)
+```
+
+## makefile中伪目标文件
+```html
+clean : 
+	rm edit $(objects) 
+```	
+
+上述*makefile*中**clean**是一个比较特殊的target：  
+* 不是一个实际存在的文件；
+* 没有依赖文件prerequisites；
+* 不是其他target的依赖文件。 
+
+实际应用中，为了明确表明**clean**不是一个文件，只是一个动作标识，通常如下定义**clean**:
+```html
+.PHONY : clean
+clean : 
+	rm edit $(objects) 
+```
+
+**clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
+我们需要像这样`make clean`明确告知make执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有详细介绍。
 
