@@ -76,32 +76,32 @@ make
 ```html
 make clean
 ```
-  这个*makefile*文件中，可执行文件**edit**和Object文件**main.o**、**kbd.o**等称之为target。源文件**main.c**和头文件**def.h**等称之为prerequisites。
+这个*makefile*文件中，可执行文件**edit**和Object文件**main.o**、**kbd.o**等称之为target。源文件**main.c**和头文件**def.h**等称之为prerequisites。
 实际上`.o`文件既是target又是prerequisites，比如`main.o`既是可执行文件**edit**的prerequisites又是**main.c**的target。shell命令`cc -c main.c`等
 称之为**Recipe**。如果target是一个文件，且它的任何一个prerequisites发生变化，make就会重新编译或重新链接生成新的target。这个示例中**edit**依赖8个Object文件，
 其中**main.o**依赖源文件**main.c**和头文件**def.h**。如果头文件**def.h**发生了变化，**main.c**会被重新编译生成新的**main.o**，**main.o**发生变化导致
 重新链接生成新的**edit**。
 
-  这个示例中**clean**是一个比较特殊的target：
-	* 不是一个实际存在的文件；
-	* 没有依赖文件prerequisites；
-	* 不是其他target的依赖文件。  
+这个示例中**clean**是一个比较特殊的target：  
+* 不是一个实际存在的文件；
+* 没有依赖文件prerequisites；
+* 不是其他target的依赖文件。  
 	
-  **clean**只是一个动作标识，表示要执行哪些命令。**clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
-	我们需要像这样`make clean`明确告知make执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有介绍。
+**clean**只是一个动作标识，表示要执行哪些命令。**clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
+我们需要像这样`make clean`明确告知make执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有介绍。
 	
 ## 读取处理makefile
 
-  上面讨论了一个简单的**makefile**文件，在*makefile*文件所在目录下执行命令：
-	```html
-	make
-	```
-	**make**会在当前目录下搜索名为**makefile**的文件，读取文件内容。命令中我们没有明确指定要生成或更新的target，所以**make**按顺序逐个查找文件中定义的Rule，
-	并将第一个找到的target（不是以**.** 开头target，**.** 开头的是伪target，不在搜索范围中）作为要更新或生成的target。
-	这个target我们称之为**缺省目标**(default goal)。缺省目标也可以通过变量**.DEFAULT_GOAL** 进行设置。在这个示例中**edit**就是找到的缺省目标文件。
-	**make**开始处理**edit**目标文件的生成或更新工作，具体流程如下：
-	* **make**查找**edit**所有的依赖文件prerequisites，**edit**有8个`.o`依赖文件;
-	* **make**执行所有依赖的`.o`文件对应的Rule。`.o`文件对应的Rule描述了如何根据`.c`文件和`.h`文件重新编译`.o`文件;
-  * 如果`.o`文件依赖的`.c`文件或`.h`文件发生了变化，执行`.o`目标文件下Recipe指定的命令重新编译生成新的`.o`文件；
-	* 若果**edit**依赖的任一`.o`文件发生了变化，执行**edit**下Recipe中的命令重新链接生成新的**edit**文件。
-	所以如果
+上面讨论了一个简单的**makefile**文件，在*makefile*文件所在目录下执行命令：
+```html
+make
+```
+**make**会在当前目录下搜索名为**makefile**的文件，读取文件内容。命令中我们没有明确指定要生成或更新的target，所以**make**按顺序逐个查找文件中定义的Rule，
+并将第一个找到的target（不是以**.** 开头target，**.** 开头的是伪target，不在搜索范围中）作为要更新或生成的target。
+这个target我们称之为**缺省目标**(default goal)。缺省目标也可以通过变量**.DEFAULT_GOAL** 进行设置。在这个示例中**edit**就是找到的缺省目标文件。
+**make**开始处理**edit**目标文件的生成或更新工作，具体流程如下：
+* **make**查找**edit**所有的依赖文件prerequisites，**edit**有8个`.o`依赖文件;
+* **make**执行所有依赖的`.o`文件对应的Rule。`.o`文件对应的Rule描述了如何根据`.c`文件和`.h`文件重新编译`.o`文件;
+* 如果`.o`文件依赖的`.c`文件或`.h`文件发生了变化，执行`.o`目标文件下Recipe指定的命令重新编译生成新的`.o`文件；
+* 若果**edit**依赖的任一`.o`文件发生了变化，执行**edit**下Recipe中的命令重新链接生成新的**edit**文件。
+
