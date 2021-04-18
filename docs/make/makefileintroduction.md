@@ -86,10 +86,10 @@ make clean
 * 不是一个实际存在的文件；
 * 没有依赖文件prerequisites；
 * 不是其他target的依赖文件。  
-	
-**clean** 只是一个动作标识，表示要执行哪些命令。 **clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
+
+ **clean**只是一个动作标识，表示要执行哪些命令。 **clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
 我们需要像这样`make clean`明确告知make执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有介绍。
-	
+
 ## 读取处理makefile
 
 上面讨论了一个简单的**makefile**文件，在*makefile*文件所在目录下执行命令：
