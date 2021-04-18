@@ -1,6 +1,6 @@
 ## makefile介绍
 
-  要想使用**make**管理我们程序编译工作，首先我们需要创建一个名为*makefile*的文件。*makefile*中定义了一系列规则**Rule**用来指导**make**编译和连接程序。  
+  要想使用**make**管理程序编译工作，首先需要创建一个名为*makefile*的文件。*makefile*中定义了一系列规则**Rule**用来指导**make**编译和连接程序。  
   这一章节，我们将会讨论一个简单的*makefile*文件，文件中描述了如何指导**make**管理8个`.c`文件和3个`.h`文件编译和链接工作，最终产生如下效果：  
   * **make**重新编译*editor*
   * 发生变化的`.c`文件重新编译；
@@ -87,7 +87,7 @@ make clean
 * 没有依赖文件prerequisites；
 * 不是其他target的依赖文件。  
 	
-**clean**只是一个动作标识，表示要执行哪些命令。**clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
+**clean** 只是一个动作标识，表示要执行哪些命令。 **clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
 我们需要像这样`make clean`明确告知make执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有介绍。
 	
 ## 读取处理makefile
