@@ -125,10 +125,10 @@ clean :
 	rm edit $(objects)
 ```
 
-# makefile中隐式规则
+## makefile中隐式规则
 
 为了简化makefile文件，**make**中自带了很多规则Rule，称之为**隐式规则**。
-对于C语言程序，**make**会识别*n*.`c`文件，将*n*.`c`文件作为*n*.`o`文件的依赖文件，使用`cc -c`命令，编译出*n*.`o`文件。
+对于C语言程序，**make**会识别*n.c*文件，将*n.c*文件作为*n.o*文件的依赖文件，使用`cc -c`命令，编译出*n.o*文件。
 所以上述*makefile*文件可以继续简化，简化后的makefile如下：
 ```html
 objects = edit main.o kbd.o command.o display.o \
@@ -165,6 +165,5 @@ clean :
 	rm edit $(objects) 
 ```
 
-**clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**下的Recipe指定的命令。
-我们需要像这样`make clean`明确告知make执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有详细介绍。
-
+**clean**没有依赖文件也不是其他target的依赖文件，所以make不会主动执行**clean**指定的命令。
+我们需要像这样`make clean`明确告知**make**执行**clean**下的命令。像这种特殊的target称之为伪目标(Phony target)，后续章节会有详细介绍。
