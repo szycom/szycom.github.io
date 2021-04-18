@@ -80,7 +80,7 @@
    
    * [make初识](/docs/make/profile.md)
    
-   * [make初识](/docs/make/makefileintroduction.md)
+   * [makefile初识](/docs/make/makefileintroduction.md)
    
 * **ToList**
 
