@@ -17,6 +17,10 @@
     * [十六进制计算](/docs/shell/hex-cal.md)
     
     * [开机启动脚本](/docs/shell/autostart.md)
+
+    * [sed](/docs/shell/sed.md)
+  
+    * [grep](/docs/shell/grep.md)
     
   * vim
 	
