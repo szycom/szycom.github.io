@@ -49,6 +49,9 @@ known_hosts：保存已认证的远程server公钥
 $ ssh-copy-id user@server
 ```
 
+**脚本将公钥传送到远程服务器**
+
+
 # 参考文献
 http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html
 https://www.jianshu.com/p/33461b619d53
