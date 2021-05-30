@@ -18,7 +18,7 @@
 > 使用密码登录，每次都必须输入密码，非常麻烦。SSH还提供了公钥登录，可以省去输入密码的步骤。
 > 所谓"公钥登录"，就是用户将自己的公钥储存在远程server上。
 
-**生成密钥操作**
+### 生成密钥操作
 
 ```bash
 $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
@@ -43,16 +43,101 @@ known_hosts：保存已认证的远程server公钥
 通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程server的公钥。
 ```
 
-**将公钥传送到远程server上面：**
+### 将公钥传送到远程server上面
 
 ```bash
 $ ssh-copy-id user@server
 ```
 
-**脚本将公钥传送到远程服务器**
+[How ssh-copy-id works]  
+> ssh-copy-id uses the SSH protocol to connect to the target host and upload the SSH user key. The command edits the authorized_keys file on the server. It creates the .ssh directory if it doesn't exist. It creates the authorized keys file if it doesn't exist. Effectively, ssh key copied to server.  
+> **It also checks if the key already exists on the server. Unless the -f option is given, each key is only added to the authorized keys file once.**
+
+### 生成指定用户的ssh秘钥
+
+参考[expect命令]
+```shell
+ssh $src_username@$src_host ssh-keygen -t rsa 
+```
+
+### 脚本将公钥传送到远程服务器
+
+* 首先需要安装expect工具
+* 利用expect实现免密登录
+
+```shell
+# 产生当前用户的ssh秘钥
+sshKeygen(){
+	local sshFile=$1
+
+# 判断是否已经存在秘钥
+	sudo test -f ${sshFile}
+	if [ $? -eq 0 ];then
+		return 0
+	fi
+# 使用expect生成秘钥
+    /usr/bin/expect <<EOF
+set timeout 60
+spawn -noecho sudo ssh-keygen -f ${sshFile}
+expect {
+"Enter passphrase (empty for no passphrase):" { send "\r"; exp_continue} 
+"Enter same passphrase again:" { send "\r"}
+}
+expect eof
+EOF
+}
+
+# 测试是否已经将公钥拷贝到远端服务器，注意EOF前后不要有空格
+sshCopyTest(){
+    /usr/bin/expect <<EOF
+set timeout -1
+spawn -noecho sudo ssh $1 echo "test"
+expect {
+"*yes/no" { send "no\r"}
+}
+expect eof
+EOF
+}
+
+# 将秘钥拷贝到远端服务器上
+sshCopy(){
+	local retVal=0
+	local sshFile=$1
+
+	retVal=`sshCopyTest $2 | grep "test" | grep -v spawn|wc -l`
+	if [ ${retVal} -eq 1 ];then
+		return 0
+	fi
+
+    /usr/bin/expect <<EOF
+set timeout -1
+spawn -noecho sudo ssh-copy-id -f -i ${sshFile} $2
+expect {
+"]"  { send "\r"}
+"*yes/no" { send "yes\r"; exp_continue }
+"*password:" { send "$3\r" }
+}
+expect eof
+EOF
+}
+```
+
+### 执行ssh user@server commands命令ssh将哪个公钥发送给远端服务器
+
+* 执行ssh user@server时，使用当前用户的公钥 /home/user/.ssh/id_rsa.pub
+* 执行sudo ssh user@server时，使用root的公钥 /root/.ssh/id_rsa.pub
+
+可用打开ssh客户端调试信息查看 [SSHD调试]
 
 
-# 参考文献
-http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html
-https://www.jianshu.com/p/33461b619d53
-https://docstore.mik.ua/orelly/networking_2ndEd/ssh/ch02_04.htm#ch02-92834.html
+# 参考资料
+
+[SSH原理与运用] [图解SSH原理] [SSH Brief Introduction] [ssh 公钥验证无效1] [SSHD调试] [expect命令] [How ssh-copy-id works]
+
+[SSH原理与运用]:http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html
+[图解SSH原理]:https://www.jianshu.com/p/33461b619d53
+[SSH Brief Introduction]:https://docstore.mik.ua/orelly/networking_2ndEd/ssh/ch02_04.htm#ch02-92834.html
+[ssh 公钥验证无效1]:https://www.jianshu.com/p/f454f79b6052
+[SSHD调试]:https://blog.csdn.net/ttyy1112/article/details/115399705
+[expect命令]:https://www.cnblogs.com/lixigang/articles/4849527.html
+[How ssh-copy-id works]:https://www.ssh.com/academy/ssh/copy-id
