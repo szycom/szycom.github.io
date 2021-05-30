@@ -127,7 +127,7 @@ EOF
 * 执行ssh user@server时，使用当前用户的公钥 /home/user/.ssh/id_rsa.pub
 * 执行sudo ssh user@server时，使用root的公钥 /root/.ssh/id_rsa.pub
 
-**所以当使用ssh公钥登录服务器失败时，请检查执行ssh的用户是否正确
+**所以当使用ssh公钥登录服务器失败时，请检查执行ssh的用户是否正确**
 
 可用打开ssh客户端调试信息查看 [SSHD调试]
 ```shell
