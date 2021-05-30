@@ -127,8 +127,81 @@ EOF
 * 执行ssh user@server时，使用当前用户的公钥 /home/user/.ssh/id_rsa.pub
 * 执行sudo ssh user@server时，使用root的公钥 /root/.ssh/id_rsa.pub
 
-可用打开ssh客户端调试信息查看 [SSHD调试]
+**所以当使用ssh公钥登录服务器失败时，请检查执行ssh的用户是否正确
 
+可用打开ssh客户端调试信息查看 [SSHD调试]
+```shell
+# 不使用sudo时
+[admin@localhost ~]$ ssh -v admin@110.1.21.201 echo "test"
+OpenSSH_7.4p1, OpenSSL 1.0.2k-fips  26 Jan 2017
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 58: Applying options for *
+debug1: Connecting to 110.1.21.201 [110.1.21.201] port 22.
+debug1: Connection established.
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_rsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_rsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_dsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_dsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_ecdsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_ecdsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_ed25519 type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /home/admin/.ssh/id_ed25519-cert type -1
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_7.4
+debug1: Remote protocol version 2.0, remote software version OpenSSH_7.4
+debug1: match: OpenSSH_7.4 pat OpenSSH* compat 0x04000000
+debug1: Authenticating to 110.1.21.201:22 as 'admin'
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ecdsa-sha2-nistp256
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: curve25519-sha256 need=64 dh_need=64
+debug1: kex: curve25519-sha256 need=64 dh_need=64
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: Server host key: ecdsa-sha2-nistp256 SHA256:dAuH8C+jJIlI6PCCq781NtIG6cyrql7BIXkFl/aU1vA
+
+# 使用sudo时
+[admin@localhost ~]$ sudo ssh -v admin@110.1.21.201 echo "test"
+OpenSSH_7.4p1, OpenSSL 1.0.2k-fips  26 Jan 2017
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 58: Applying options for *
+debug1: Connecting to 110.1.21.201 [110.1.21.201] port 22.
+debug1: Connection established.
+debug1: permanently_set_uid: 0/0
+debug1: identity file /root/.ssh/id_rsa type 1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_rsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_dsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_dsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ecdsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ecdsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ed25519 type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ed25519-cert type -1
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_7.4
+debug1: Remote protocol version 2.0, remote software version OpenSSH_7.4
+debug1: match: OpenSSH_7.4 pat OpenSSH* compat 0x04000000
+debug1: Authenticating to 110.1.21.201:22 as 'admin'
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+
+```
 
 # 参考资料
 
