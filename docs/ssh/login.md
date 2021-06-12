@@ -66,16 +66,14 @@ ssh $src_username@$src_host ssh-keygen -t rsa
 * 利用expect实现免密登录
 
 ```shell
-# 产生当前用户的ssh秘钥
 sshKeygen(){
 	local sshFile=$1
 
-# 判断是否已经存在秘钥
 	sudo test -f ${sshFile}
 	if [ $? -eq 0 ];then
 		return 0
 	fi
-# 使用expect生成秘钥
+
     /usr/bin/expect <<EOF
 set timeout 60
 spawn -noecho sudo ssh-keygen -f ${sshFile}
@@ -87,19 +85,19 @@ expect eof
 EOF
 }
 
-# 测试是否已经将公钥拷贝到远端服务器，注意EOF前后不要有空格
+# 下面send "\003"是发送CTRL+C命令
 sshCopyTest(){
     /usr/bin/expect <<EOF
 set timeout -1
 spawn -noecho sudo ssh $1 echo "test"
 expect {
+"*assword" {send "\003"}
 "*yes/no" { send "no\r"}
 }
 expect eof
 EOF
 }
 
-# 将秘钥拷贝到远端服务器上
 sshCopy(){
 	local retVal=0
 	local sshFile=$1
