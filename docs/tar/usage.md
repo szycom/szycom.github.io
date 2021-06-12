@@ -81,5 +81,5 @@ total 12
 drwxrwxr-x 3 test test 4096 6月  12 15:59 .
 drwxr-xr-x 9 test test 4096 6月  12 15:59 ..
 drwxrwxr-x 3 test test 4096 6月  12 15:59 home
-
+ 
 ```
