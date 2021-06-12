@@ -1,4 +1,5 @@
 ## tar命令打包指定目录下的所有文件
+参考[1]
 
 ```shell
 # 打包指定目录下的文件，不包含目录本身，不包含绝对路径
@@ -7,7 +8,7 @@ test@master:~$ tar -cvf test.tar -C /home/test/test_dir .
 ./b.txt
 ./a.txt
 
-# 打包指定目录下的文件，包含目录本身，不包含绝对路径
+# 打包指定目录下的文件，包含目录本身，不包含绝对路径[1]
 test@master:~$ tar -cvf test.tar -C /home/test test_dir
 test_dir/
 test_dir/b.txt
@@ -83,3 +84,5 @@ drwxr-xr-x 9 test test 4096 6月  12 15:59 ..
 drwxrwxr-x 3 test test 4096 6月  12 15:59 home
  
 ```
+
+[1]:https://www.hangge.com/blog/cache/detail_2599.html
