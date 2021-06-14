@@ -50,6 +50,10 @@
     
     * [hosts](/docs/git/sundry.md)
 
+  * svn
+  
+    * [使用过的命令](/docs/svn/usage.md)
+
   * markdown
   
     * [有用网站](/docs/markdown/website.md)
