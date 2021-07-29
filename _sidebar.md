@@ -59,6 +59,10 @@
     * [有用网站](/docs/markdown/website.md)
 	
 	* [使用过的语法](/docs/markdown/usedsyntax.md)
+
+  * gdb
+
+    * [使用过的语法](/docs/gdb/usedsyntax.md)
 	
 * **JAVA**
   
