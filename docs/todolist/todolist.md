@@ -30,3 +30,13 @@
 [数据包接收系列 — NAPI的原理和实现](https://blog.csdn.net/zhangskd/article/details/21627963)
 [openconfig](https://blog.csdn.net/qq_27923047/category_10402228.html)
 [grpc](https://grpc.io/docs/what-is-grpc/introduction/)
+
+$ c:/users/szy/appdata/local/programs/python/python39/python.exe -m pip install grpcio
+Collecting grpcio
+  Downloading grpcio-1.41.1-cp39-cp39-win_amd64.whl (3.2 MB)
+Requirement already satisfied: six>=1.5.2 in c:\users\szy\appdata\local\programs\python\python39\lib\site-packages (from grpcio) (1.15.0)
+Installing collected packages: grpcio
+Successfully installed grpcio-1.41.1
+
+protobuf-3.19.1-py2.py3-none-any.whl
+grpcio-1.41.1-cp36-cp36m-win_amd64.whl
