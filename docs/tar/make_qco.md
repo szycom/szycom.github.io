@@ -1,3 +1,34 @@
+* 修改qcow镜像内容
+
+```bash
+# 将qcow转成原始镜像
+qemu-img convert -f qcow2 -O raw xxx.qcow2 xxx.img
+
+# 查看要挂载点的偏移
+SECTORS=`fdisk -lu xxx.img | grep "xxx3" | awk '{print $2}'`
+OFFSET=$((${SECTORS * 512}))
+
+# 将img文件仿真成一个设备
+LOOP=`losetup -f`
+losetup ${LOOP} xxx.img -o ${OFFSET}
+
+# 挂载设备到服务器
+mount ${LOOP} xxx_dir
+# 通过xxx_dir访问img中内容
+
+# 取消挂载点
+unmount xxx_dir
+#删除仿真设备
+losetup -d ${LOOP}
+
+# 将原始镜像打包成qcow2格式
+qemu-img convert -f raw -c -O qcow2 xxx.img xxx.qcow2
+
+```
+
+
+* 使用virsh创建虚机
+
 ```bash
 #!/bin/bash
 # 更新redis_xml和codis-modify.iso
