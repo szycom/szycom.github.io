@@ -34,9 +34,11 @@
     
     * [登录](/docs/ssh/login.md)
   
-  * tar
+  * linux
     
-    * [常用语法](/docs/tar/usage.md)
+    * [tar命令](/docs/tar/usage.md)
+
+    * [qcow](/docs/tar/make_qco.md)
    
   * blog
     
